@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,500;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,500;1,400;1,600;1,700&display=swap');
+.card{
+    border-radius: 5%;
+    padding: 3rem;
+    margin: 1rem;
+    border-style: solid;
+    border-width: 4px,4px,4px,4px;
+    border-color:black;
+    border-radius:0.3rem;
+
+}
+body{
+    background-color: #E8EDFF;
+
+}
+.border:hover{
+    box-shadow: 0px 0px 0px grey;
+    -webkit-transition:  box-shadow .5s ease-out;
+       box-shadow: .8px .9px 3px grey;
+
+}
+.card:hover{
+    box-shadow: 3px 10px 20px grey;
+    -webkit-transition:  box-shadow .5s ease-in;
+}
+.col{
+    border-radius: 5%;
+}
