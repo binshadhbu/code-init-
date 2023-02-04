@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,500;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,500;1,400;1,600;1,700&display=swap');
+
+.navbar{
+    font-family: 'Poppins', sans-serif;
+}
+.carousel-inner{
+    height: 40rem;
+}
+.container{
+    position: relative;
+    text-align: center;
+    color: beige;
+}
+.heading{
+    color: beige;
+    position: absolute;
+    bottom: 15px;
+    left: 16px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
