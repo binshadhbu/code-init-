@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sell</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="Intro">
+    <p><h3><u>SELLING FORM</u></h3></p>
+    </div>
+    <main>
+        <div action="http://localhost:3080/sell" method = "post">
+            <div class="form-group">
+              <label for="productName">Name of the product:</label>
+              <input type="text" class="form-control" placeholder="Name of the Product" id="pname">
+            </div>
+            <div class="form-group">
+                <label for="DOP">Date of Purchase</label>
+                <input type="date" class="form-control" placeholder="Date of Purchase" id="dop">
+            </div>
+            <div class="form-group">
+                <label for="roll_number">Registration ID</label>
+                <input type="text" class="form-control" placeholder="Registration ID" id="regID">
+            </div>
+            <div class="form-group">
+                <label for="email">Brand</label>
+                <input type="text" class="form-control" placeholder="Brand" id="brand">
+              </div> 
+            <div class="form-group">
+              <label for="productCost">Cost:</label>
+              <input type="number" class="form-control" placeholder="Cost" id="price">
+            </div>
+            <div class="form-group">
+              <label for="productLink">Image Link:</label>
+              <input type="url" class="form-control" placeholder="Image Link" id="link">
+            </div>
+            <div class="form-group">
+                <label for="productSpecs">Product Description :</label>
+                <textarea class="form-control" id="specs" placeholder="Product Description" rows="3"></textarea>
+              </div>
+            <div class="form-group">
+              <label for="productSpecs">Defects (If Any):</label>
+              <textarea class="form-control" id="def" placeholder="Defects" rows="3"></textarea>
+            </div>
+            <div style="width:500px;" >
+            <button  onclick = "sell()" type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-primary">Clear Form</button>
+            </div>
+          </div>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </main>
+  </body>
+  <script>
+    function sell(){
+    const xhttp = new XMLHttpRequest();
+    let pname = document.getElementById("pname").value;
+    let dop = document.getElementById("dop").value;
+    let regid = document.getElementById("regID").value;
+    let brand = document.getElementById("brand").value;
+    let price = document.getElementById("price").value;
+    let specs = document.getElementById("specs").value;
+    let def = document.getElementById("def").value;
+
+    // console.log(username, password);
+    const formdata = new FormData();
+    formdata.append("NAME", pname);
+    formdata.append("DATE_OF_PURCHASE", dop);
+    formdata.append("REG_ID", regid);
+    formdata.append("BRAND", brand);
+    formdata.append("COST", price);
+    formdata.append("DESCP", specs);
+    formdata.append("DEFECTS", def);
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      const status = this.status;
+      const data = this.responseText;
+       // Typical action to be performed when the document is ready:
+      //  console.log(xhttp.responseText);
+       let response = xhttp.responseText;
+       if(response == 1){
+        window.location.href = "../index.html";
+       }
+       else{
+        console.log('Failed');
+       }
+    }
+  };
+    xhttp.open("POST", "http://localhost:3080/sell");
+    // xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+    xhttp.send(formdata);
+    }
+  </script>
+</html>

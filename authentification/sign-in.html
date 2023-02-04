@@ -71,7 +71,7 @@
 <main style="position:absolute" class="form-signin w-100 m-auto">
   <div class="card mx-auto">
     <div class="card-body">
-  <form>
+  <div action = "http://localhost:3080/login" method = "post">
     <img class="pixel-gif" src="pink-pokemon.gif" alt="Sylveon Pink GIF">
     <h1 class="h3 mb-3 fw-normal">Welcome Back :)</h1>
 
@@ -87,13 +87,13 @@
     </div>
     -->
     <div class="form-floating mb-3 mt-3">
-      <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-      <label for="email">Email</label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter email" name="USERNAME">
+      <label for="USERNAME">Username</label>
     </div>
     
     <div class="form-floating mt-3 mb-3">
-      <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-      <label for="pwd">Password</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="PASSWORD">
+      <label for="PASSWORD">Password</label>
     </div>
     <!-- changing here
         <div class="checkbox mb-3">
@@ -103,13 +103,42 @@
     </div>
     -->
     <a class="forgor-pass-lol" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Forgot Password?</a>
-    <button class="w-100 btn btn-lg btn-primary" type="Log In" style="margin-top: 25px">Sign in</button>
+    <button onclick = "login()" class="w-100 btn btn-lg btn-primary" type="Log In" style="margin-top: 25px">Sign in</button>
     <hr>
     <h6>Haven't signed up yet?</h6><a href="./sign-up.html">Sign Up.</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2023. All rights reserved.</p>
-  </form>
+  </div>
 </div>
 </div>
 </main>
   </body>
+  <script>
+    function login(){
+    const xhttp = new XMLHttpRequest();
+    let username = document.getElementById("uname").value;
+    let password = document.getElementById("pwd").value;
+    console.log(username, password);
+    const formdata = new FormData();
+    formdata.append("USERNAME", username);
+    formdata.append("PASSWORD", password);
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      const status = this.status;
+      const data = this.responseText;
+       // Typical action to be performed when the document is ready:
+      //  console.log(xhttp.responseText);
+       let response = xhttp.responseText;
+       if(response == 1){
+        window.location.href = "../index.html";
+       }
+       else{
+        console.log('Failed');
+       }
+    }
+  };
+    xhttp.open("POST", "http://localhost:3080/login");
+    // xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+    xhttp.send(formdata);
+    }
+  </script>
 </html>
