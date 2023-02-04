@@ -3,7 +3,8 @@ const mysql = require('mysql');
 const bodyparser = require('body-parser');
 //const serverless=require('serverless-http');
 const app = express();
-const crypto = require("crypto");
+const crypto = require("crypto"); 
+const {validationResult} = require('express-validator')
 app.use(bodyparser.json());
 
 
@@ -52,8 +53,8 @@ app.post('/sell', (req, res) => {
     else
       console.log(err);
     });
+	res.redirect('index.html');
   });
-
   //GET PRODUCT INFO
 app.get('/sell' , (req, res) => {
 	sqlconnect.query('SELECT * FROM products', (err, rows, fields) => {
@@ -158,15 +159,28 @@ app.post('/user', (req, res) => {
     let email = req.body.EMAIL_ID;
     let contact  = req.body.CONTACTNO;
     let pwd = req.body.PASSWORD;
-    var sql = "INSERT INTO USER VALUES(?,?,?,?,?)";
+    var sql = "INSERT INTO user VALUES(?,?,?,?,?)";
     sqlconnect.query(sql, [reg, name, email, contact, pwd], (err, rows, fields) => {
     if (!err)
       res.send('USER DETAILS ADDED');
     else
       console.log(err);
     });
-  });
-  app.get('/user/:id' , (req, res) => {
+});
+app.post('/login', (req, res) => {
+    let name = req.body.USERNAME;
+    let pwd = req.body.PASSWORD;
+    var sql = "SELECT * FROM user WHERE PASSWORD = ? AND USERNAME = ?";
+    sqlconnect.query(sql, [pwd, name], (err, rows, fields) => {
+		console.log(rows.length)
+    if (rows.length==1)
+      res.send('Login Successful');
+    else
+      res.send('Login Unsuccessful')
+    });
+});
+
+app.get('/user/:id' , (req, res) => {
 	sqlconnect.query('SELECT * FROM user where user.REG_ID = ?', [req.params.id], (err, rows, fields) => {
 	  if (!err)
 		  res.send(rows);
@@ -189,18 +203,12 @@ app.put('/user/:id', (req, res) => {
 	if(uname != null)
 		var sql = "UPDATE user SET username=? WHERE REG_ID=?";
 		sqlconnect.query(sql, [uname, req.params.id], (err, rows, fields) => {
-		// if (!err)
-		// 	res.send('COST Updated Successfully');
-		// else
 		if(err)
 			console.log(err);
 		})
 	if(pwd != null){
 		var sql = "UPDATE user SET password=? WHERE REG_ID=?";
 		sqlconnect.query(sql, [pwd, req.params.id], (err, rows, fields) => {
-		// if (!err)
-		// 	res.send('IMAGES Updated Successfully');
-		// else
 		if(err)
 			console.log(err);
 		})
