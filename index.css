@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,500;1,400;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,500;1,400;1,600;1,700&display=swap');
-.home{
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,500;1,400;1,600;1,700&display=swap');
+*{
+  font-family: 'Roboto Mono', monospace;
+font-family: 'Ubuntu', sans-serif;
+}
+body{
+  font-family: 'Roboto Mono', monospace;
+font-family: 'Ubuntu', sans-serif;
+
+}
+home{
     background-color:	#F7F8F9;
 }
 .navbar{
@@ -26,6 +36,7 @@
     padding-top: 10rem; 
 }
 .col{
+  
     padding-left: 5rem;
     padding-right: 5rem;
     padding-bottom: 4rem;
@@ -34,6 +45,8 @@
     
 }
 .card{
+  font-family: 'Roboto Mono', monospace;
+  font-family: 'Ubuntu', sans-serif ;
     border:3px solid black;
     border-radius: 8.5%;
     box-shadow: 0px 0px 0px grey;
